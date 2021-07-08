@@ -22,11 +22,12 @@ int main()
             cin >> playOrQuit;
         }
 
+        bool isPlayer1 = true;
+        TicTacToeBoard board;
+
         // game loop
         while (playOrQuit == "p") {
 
-            bool isPlayer1 = true;
-            TicTacToeBoard board;
             board.drawBoard();
 
             if (isPlayer1) {

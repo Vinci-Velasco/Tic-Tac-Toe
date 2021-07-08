@@ -45,14 +45,32 @@ void TicTacToeBoard::drawBoard() const
 
 bool TicTacToeBoard::insert(int x, int y, bool isPlayer1)
 {
-    // stub
-    return true;
+    // check if the coords are in the boundaries of the board
+    if (x > 2 || x < 0 || y > 2 || y < 0) {
+        return false;
+    }
+
+    else if (board[y][x] == "X" || board[y][x] == "O") {
+        return false;
+    }
+
+
+    else {
+        if (isPlayer1) {
+            board[y][x] = "X";
+        }
+        else {
+            board[y][x] = "O";
+        }
+        return true;
+    }
+
 }
 
 bool TicTacToeBoard::didPlayerWin(bool isPlayer1) const
 {
     //stub
-    return true;
+    return false;
 }
 
 void TicTacToeBoard::displayWinScreen(bool isPlayer1) const
