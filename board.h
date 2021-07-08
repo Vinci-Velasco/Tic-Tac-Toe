@@ -6,6 +6,10 @@ using std::string;
 class TicTacToeBoard {
 
 public:
+
+    // Creates the board as a board filled with " " characters
+    TicTacToeBoard();
+
     // POST: draws the board object as a tic-tac-toe board to the screen
     void drawBoard() const;
 
