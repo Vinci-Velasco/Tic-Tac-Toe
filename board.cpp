@@ -69,6 +69,13 @@ bool TicTacToeBoard::insert(int x, int y, bool isPlayer1)
 
 bool TicTacToeBoard::didPlayerWin(bool isPlayer1) const
 {
+    // check every row
+
+    // check every column
+
+    // check every diagonal (only 2)
+
+
     //stub
     return false;
 }

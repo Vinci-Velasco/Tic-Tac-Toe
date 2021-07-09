@@ -8,24 +8,27 @@ using std::cin;
 
 int main()
 {
-
-    cout << "Welcome to 2-player Tic Tac Toe! Do you wish to (p)lay or (q)uit? ";
-    string playOrQuit = "";
-    cin >> playOrQuit;
-
     bool gameLoop = true;
 
     while (gameLoop) {
+
+        cout << "Welcome to 2-player Tic Tac Toe! Do you wish to (p)lay or (q)uit? ";
+        string playOrQuit = "";
+        cin >> playOrQuit;
 
         while (playOrQuit != "p" && playOrQuit != "q") {
             cout << "Please type a valid response: ";
             cin >> playOrQuit;
         }
 
+        if (playOrQuit == "q") {
+            gameLoop = false;
+        }
+
         bool isPlayer1 = true;
         TicTacToeBoard board;
 
-        // game loop
+        // turn loop
         while (playOrQuit == "p") {
 
             board.drawBoard();
@@ -85,20 +88,13 @@ int main()
                     board.displayWinScreen(isPlayer1);
                     cin >> playOrQuit;
 
-                    if (playOrQuit == "q") {
-                        gameLoop = false;
-                    }
-
                 }
             }
 
-            // switches to opposite boolean value
+            // switches to other player for next turn loop
             isPlayer1 = !isPlayer1;
         }
     }
 
-    // keep track of who's current player
-    // loop: draw board, take input, insert to board, check win condition,
-    // repeat until game is over
     return 0;
 }
