@@ -3,16 +3,17 @@
 #include "board.h"
 #include <cassert>
 
-void insert_test();
+void insertTest();
+void didPlayerWin();
 
 int main()
 {
-
-    insert_test();
+    insertTest();
+    didPlayerWin();
     return 0;
 }
 
-void insert_test()
+void insertTest()
 {
     TicTacToeBoard board1;
 
@@ -33,4 +34,42 @@ void insert_test()
     // insert on spot that other player already filled
     assert(!board1.insert(2,2, false));
 
+}
+
+void didPlayerWin()
+{
+    TicTacToeBoard board1;
+
+    // check when win condition is false (empty board)
+    assert(!board1.didPlayerWin(true));
+    assert(!board1.didPlayerWin(false));
+
+    // check when win condition is false (not empty)
+    board1.insert(0, 0, true);
+    board1.insert(1, 1, false);
+    board1.insert(2, 2, true);
+    board1.insert(1, 0, false);
+
+    assert(!board1.didPlayerWin(true));
+    assert(!board1.didPlayerWin(false));
+
+    // check when vertical 3 in a row
+    board1.insert(1, 2, false);
+    assert(!board1.didPlayerWin(true));
+    assert(board1.didPlayerWin(false));
+
+    // check when horizontal 3 in a row
+    TicTacToeBoard board2;
+    board2.insert(0, 0, true);
+    board2.insert(2, 1, false);
+    board2.insert(1, 0, true);
+    board2.insert(2, 0, true);
+    assert(board2.didPlayerWin(true));
+    assert(!board2.didPlayerWin(false));
+
+    // check when diagonal 3 in a row
+    board2.insert(1, 1, true);
+    board2.insert(0, 2, true);
+    assert(board2.didPlayerWin(true));
+    assert(!board2.didPlayerWin(false));
 }

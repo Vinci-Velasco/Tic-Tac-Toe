@@ -69,18 +69,80 @@ bool TicTacToeBoard::insert(int x, int y, bool isPlayer1)
 
 bool TicTacToeBoard::didPlayerWin(bool isPlayer1) const
 {
-    // check every row
+    int WIN_CONDITION = 3;
 
-    // check every column
+    // check if 3 symbols in a row horizontally
+    for (int i = 0; i < ROWS; i++) {
+        int amountOfSymbols = 0; // reps amount "X" or "O" depending on isPlayer1
 
-    // check every diagonal (only 2)
+        for (int j = 0; j < COLUMNS; j++) {
 
+            if (board[i][j] == "X" && isPlayer1) {
+                amountOfSymbols++;
+            }
+            else if (board[i][j] == "O" && !isPlayer1) {
+                amountOfSymbols++;
+            }
+        }
 
-    //stub
+        if (amountOfSymbols == WIN_CONDITION) {
+            return true;
+        }
+    }
+
+    // check if 3 symbols in a row vertically
+    for (int i = 0; i < COLUMNS; i++) {
+        int amountOfSymbols = 0; // reps amount "X" or "O" depending on isPlayer1
+
+        for (int j = 0; j < ROWS; j++) {
+
+            if (board[j][i] == "X" && isPlayer1) {
+                amountOfSymbols++;
+            }
+            else if (board[j][i] == "O" && !isPlayer1) {
+                amountOfSymbols++;
+            }
+        }
+
+        if (amountOfSymbols == WIN_CONDITION) {
+            return true;
+        }
+    }
+
+    // check if 3 symbols in a row diagonally (only 2 cases)
+    if (isPlayer1) {
+
+        if (board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X") {
+            return true;
+        }
+        else if (board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X") {
+            return true;
+        }
+    }
+    else {
+
+        if (board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O") {
+            return true;
+        }
+        else if (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O") {
+            return true;
+        }
+    }
+
     return false;
 }
 
 void TicTacToeBoard::displayWinScreen(bool isPlayer1) const
 {
+    string player = "";
+    if (isPlayer1) {
+        player = "Player1";
+    }
+    else {
+        player = "Player2";
+    }
 
+    drawBoard();
+    cout << player << " has won!!\n\n";
+    cout << "Do you want to play again? Type 'p' to play, type 'q' to quit: ";
 }

@@ -9,10 +9,10 @@ using std::cin;
 int main()
 {
     bool gameLoop = true;
+    cout << "Welcome to 2-player Tic Tac Toe! Do you wish to (p)lay or (q)uit? ";
 
     while (gameLoop) {
 
-        cout << "Welcome to 2-player Tic Tac Toe! Do you wish to (p)lay or (q)uit? ";
         string playOrQuit = "";
         cin >> playOrQuit;
 
@@ -55,11 +55,7 @@ int main()
                 if (board.didPlayerWin(isPlayer1)) {
 
                     board.displayWinScreen(isPlayer1);
-                    cin >> playOrQuit;
-
-                    if (playOrQuit == "q") {
-                        gameLoop = false;
-                    }
+                    playOrQuit = "q"; // leave turn loop
 
                 }
             }
